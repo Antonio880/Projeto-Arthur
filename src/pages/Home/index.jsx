@@ -1,0 +1,10 @@
+import MainHome from "../../templates/MainHome"
+export default function Home() {
+
+    return (
+      <main className="w-full">
+        <MainHome></MainHome>
+      </main>
+    )
+  }
+  
