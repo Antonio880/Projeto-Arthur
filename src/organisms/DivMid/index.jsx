@@ -7,10 +7,10 @@ export default function DivMid() {
             <div>
                 <img src="poligono.svg" alt="" />
             </div>
-            <div>
+            <div className="cursor-pointer pl-5 pr-3">
                 <img src="area_do_professor.svg" alt="" />
             </div>
-            <div>
+            <div className="cursor-pointer pr-5">
                 <img src="area_do_aluno.svg" alt="" />
             </div>
             <div>

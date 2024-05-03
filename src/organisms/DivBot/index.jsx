@@ -9,11 +9,11 @@ export default function DivBot() {
     ])
     
     return (
-        <div className="flex flex-col">
-            <div className="text-purple font-sans font-semibold text-4xl">
+        <div className="flex justify-center flex-col mb-20">
+            <div className="text-purple font-sans font-semibold pl-[400px] text-5xl">
                 <span className="text-purple">Como Funciona</span><span className="text-orange">?</span>
             </div>
-            <div className="flex flex-row justify-center">
+            <div className="flex flex-row justify-center py-5">
                 {
                     passos.map((passo, index) => {
                         return (
