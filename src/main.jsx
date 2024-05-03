@@ -6,16 +6,27 @@ import {
 import Home from "./pages/Home/index.jsx";
 import Header from "./templates/Header/index.jsx";
 import Footer from "./templates/Footer/index.jsx";
+import Sign from "./pages/Sign/index.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <main>
+      <body>
         <Header />
         <Home />
         <Footer />
-      </main>
+      </body>
+    ),
+  },
+  {
+    path: "/sign",
+    element: (
+      <body>
+        <Header />
+        <Sign />
+        <Footer />
+      </body>
     ),
   }
 ]);

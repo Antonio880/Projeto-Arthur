@@ -13,7 +13,6 @@ export default function DivSup() {
             <div className="text-gray pt-5 basis-1/2 text-xl px-64 text-right">
                 Realize suas avaliações de maneira <u >digital</u> e <u>intuitiva</u>. Com o <b>EXAME</b>, você terá acesso a uma plataforma <u>prática</u> para estudar.
             </div>
-
         </div>
     )
 }
