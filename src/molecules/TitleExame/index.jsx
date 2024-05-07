@@ -2,7 +2,7 @@ export default function TitleExame({ typeUser }) {
     return (
         <div className="py-10">
             {
-                typeUser === 'prof' ?
+                typeUser ?
                     (
                         <h1 className="flex justify-center text-purple font-medium text-4xl">Professor(a), junte-se ao Exame <span className="text-orange">!</span></h1>
                     ):

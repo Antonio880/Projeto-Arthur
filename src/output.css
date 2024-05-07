@@ -606,6 +606,11 @@ video {
   margin-bottom: 1.75rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -670,20 +675,12 @@ video {
   width: 24rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-\[400px\] {
-  width: 400px;
-}
-
-.w-\[420px\] {
-  width: 420px;
-}
-
 .w-\[470px\] {
   width: 470px;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .basis-1\/2 {
@@ -716,6 +713,10 @@ video {
 
 .justify-around {
   justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .rounded-3xl {
@@ -771,6 +772,11 @@ video {
   padding: 0.875rem;
 }
 
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -819,6 +825,21 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+
+.px-7 {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.px-36 {
+  padding-left: 9rem;
+  padding-right: 9rem;
 }
 
 .pb-20 {
@@ -968,11 +989,6 @@ video {
 .hover\:bg-purple:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(116 121 209 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(159 161 185 / var(--tw-bg-opacity));
 }
 
 .hover\:text-white:hover {
