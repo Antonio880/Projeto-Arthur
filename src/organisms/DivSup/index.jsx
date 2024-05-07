@@ -1,7 +1,7 @@
 export default function DivSup() {
     return (
         <div className=" h-48 my-7 flex mx-28 flex-row ">
-            <div className="flex  flex-col justify-center basis-1/2 text-purple font-sans font-semibold text-5xl">
+            <div className="flex flex-col justify-center basis-1/2 text-purple font-sans font-semibold text-5xl">
                 <div className="flex flex-col justify-center">
                     <div className="flex justify-center">Sua jornada de</div>
                     <div className="text-orange flex justify-center">conhecimento</div>
