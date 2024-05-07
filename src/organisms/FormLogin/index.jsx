@@ -5,7 +5,7 @@ export default function FormLogin() {
     const navigate = useNavigate();
     
     return (
-        <div className="flex px-36">
+        <div className="flex px-40">
             <div className='basis-1/2 pb-20'>
                 <img src="login_img.svg" alt="" />
             </div>
