@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom"
+
 export default function DivMid() {
+
+    const navigate = useNavigate();
+
     return(
         <div className="flex flex-row justify-center">
             <div>
@@ -7,10 +12,10 @@ export default function DivMid() {
             <div>
                 <img src="poligono.svg" alt="" />
             </div>
-            <div className="cursor-pointer pl-5 pr-3">
+            <div className="cursor-pointer pl-5 pr-3" onClick={() => navigate("/login")}>
                 <img src="area_do_professor.svg" alt="" />
             </div>
-            <div className="cursor-pointer pr-5">
+            <div className="cursor-pointer pr-5" onClick={() => navigate("/login")}>
                 <img src="area_do_aluno.svg" alt="" />
             </div>
             <div>
