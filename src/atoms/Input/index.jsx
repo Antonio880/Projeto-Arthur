@@ -1,14 +1,18 @@
-export default function Input({ image, placeholder, register }) {
+export default function Input({ name, image, placeholder, register, rules, error }) {
     return (
-        <div className="relative flex my-5 h-12 w-full"> {/* Mantenha a largura total para o contêiner */}
-            <div className="absolute left-0 flex items-center pl-3 h-full pointer-events-none">
-                <img src={image} alt="" className="h-6 w-6" />
+        <div className="relative flex flex-col my-5 w-full">
+            <div className="relative flex h-12 w-full">
+                <div className="absolute left-0 flex items-center pl-3 h-full pointer-events-none">
+                    <img src={image} alt="" className="h-6 w-6" />
+                </div>
+                <input
+                    className="w-[470px] pl-12 py-2 border-2 border-gray rounded-3xl focus:ring-2 focus:ring-purple"
+                    type={name === "password" || name === "confirmPassword" ? "password" : name === "email" ? "email" : "text"} 
+                    placeholder={placeholder}
+                    {...register(name, rules)}
+                />
             </div>
-            <input
-                className="w-[470px] pl-12 py-2 border-2 border-gray rounded-3xl focus:ring-2 focus:ring-purple" // Substituído w-full por w-96
-                type={placeholder === "Senha" || placeholder === "Confirme a Senha" ? "password" : placeholder === "Email" ? "email" : "text"} 
-                placeholder={placeholder}
-            />
+            {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
         </div>
     );
 }
