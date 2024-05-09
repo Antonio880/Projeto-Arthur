@@ -1,10 +1,24 @@
 import { useEffect } from 'react';
 import Input from '../../atoms/Input';
+import { useForm } from 'react-hook-form';
 
 export default function DivForm({ typeUser, setTypeUser }) {
 
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
+
+    // Certifique-se de definir a função onSubmit
+    const onSubmit = data => {
+        console.log(data);
+        // Lógica de submissão do formulário
+    };
+
     return (
-        <div className="flex flex-row w-full">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-row w-full">
             <div className='flex justify-center basis-1/2'>
                 <div className="pt-20">
                     <Input image={"icone_nome.svg"} placeholder={"Nome"} />
@@ -12,8 +26,8 @@ export default function DivForm({ typeUser, setTypeUser }) {
                     <Input image={"icone_senha.svg"} placeholder={"Senha"} />
                     <Input image={"icone_senha.svg"} placeholder={"Confirme a Senha"} />
                     <div className='flex justify-between'>
-                        <button className='py-1 px-3 border-2 border-purple bg-purple rounded-md transition delay-200 hover:bg-darkPurple hover:border-darkPurple text-white'>Cadastre-se</button>
-                        <button className='mx-3 py-1 px-2 border-2 border-purple rounded-md text-purple' onClick={() => setTypeUser(!typeUser)}>{ typeUser === true ? "Sou Estudante" : "Sou Professor" }</button>
+                        <button type="submit" className='py-1 px-3 border-2 border-purple bg-purple rounded-md transition delay-200 hover:bg-darkPurple hover:border-darkPurple text-white'>Cadastre-se</button>
+                        <button type="button" className='mx-3 py-1 px-2 border-2 border-purple rounded-md text-purple' onClick={() => setTypeUser(!typeUser)}>{ typeUser === true ? "Sou Estudante" : "Sou Professor" }</button>
                     </div>
                 </div>
             </div>
@@ -28,6 +42,6 @@ export default function DivForm({ typeUser, setTypeUser }) {
                         )
                 }
             </div>
-        </div>
+        </form>
     )
 }

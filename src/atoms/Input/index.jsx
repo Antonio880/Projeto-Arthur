@@ -1,4 +1,4 @@
-export default function Input({ image, placeholder }) {
+export default function Input({ image, placeholder, register }) {
     return (
         <div className="relative flex my-5 h-12 w-full"> {/* Mantenha a largura total para o contêiner */}
             <div className="absolute left-0 flex items-center pl-3 h-full pointer-events-none">
@@ -6,7 +6,7 @@ export default function Input({ image, placeholder }) {
             </div>
             <input
                 className="w-[470px] pl-12 py-2 border-2 border-gray rounded-3xl focus:ring-2 focus:ring-purple" // Substituído w-full por w-96
-                type="text"
+                type={placeholder === "Senha" || placeholder === "Confirme a Senha" ? "password" : placeholder === "Email" ? "email" : "text"} 
                 placeholder={placeholder}
             />
         </div>
