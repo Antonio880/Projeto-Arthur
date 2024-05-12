@@ -9,42 +9,49 @@ import Footer from "./templates/Footer/index.jsx";
 import Sign from "./pages/Sign/index.jsx";
 import Login from "./pages/Login/index.jsx";
 import { PageProvider } from "./Context/PageContext.jsx";
+import { UserProvider } from "./Context/ContextUser.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <PageProvider>
-        <body>
-          <Header />
-          <Home />
-          <Footer />
-        </body>
-      </PageProvider>
+      <UserProvider>
+        <PageProvider>
+          <body>
+            <Header />
+            <Home />
+            <Footer />
+          </body>
+        </PageProvider>
+      </UserProvider>
     ),
   },
   {
     path: "/sign",
     element: (
-      <PageProvider>
-        <body>
-          <Header />
-          <Sign />
-          <Footer />
-        </body>
-      </PageProvider>
+      <UserProvider>
+        <PageProvider>
+          <body>
+            <Header />
+            <Sign />
+            <Footer />
+          </body>
+        </PageProvider>
+      </UserProvider>
     ),
   },
   {
     path: "/login",
     element: (
-      <PageProvider>
-        <body>
-          <Header />
-          <Login />
-          <Footer />
-        </body>
-      </PageProvider>
+      <UserProvider>
+        <PageProvider>
+          <body>
+            <Header />
+            <Login />
+            <Footer />
+          </body>
+        </PageProvider>
+      </UserProvider>
     )
   }
 ]);

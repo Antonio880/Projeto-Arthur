@@ -1,20 +1,33 @@
-import { useEffect } from 'react';
 import Input from '../../atoms/Input';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useUserContext } from '../../Context/ContextUser';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function DivForm({ typeUser, setTypeUser }) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
-    const onSubmit = data => {
-        console.log(data);
+    const { user, setUser } = useUserContext();
+    const navigate = useNavigate();
+    const BASE_URL = "http://localhost:8080";
+    const onSubmit = async data => {
+        console.log(data)
+        data.role = typeUser ? "professor" : "student";
+        await axios.post(`${BASE_URL}/users`, data)
+            .then(response => {
+                setUser(response.data);
+                console.log(response);
+                navigate('/');
+            })
+            .catch(error => console.log(error));
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-row w-full">
             <div className='flex justify-center basis-1/2'>
                 <div className="pt-20">
-                <Input
-                        name="nome"
+                    <Input
+                        name="username"
                         image={"icone_nome.svg"}
                         placeholder={"Nome"}
                         register={register}
