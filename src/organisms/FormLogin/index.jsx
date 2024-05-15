@@ -12,9 +12,10 @@ export default function FormLogin() {
     const onSubmit = async data => {
         await axios.post(`${BASE_URL}/users/login`, data)
             .then(response => {
-                setUser(response.data);
-                console.log(response);
-                navigate('/');
+                if(response.status === 200) {
+                    setUser(response.data);
+                    navigate("/");
+                }
             })
             .catch(error => console.log(error));
     };

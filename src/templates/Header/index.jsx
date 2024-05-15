@@ -2,14 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { usePageContext } from "../../Context/PageContext";
 import { useUserContext } from "../../Context/ContextUser";
 import { useEffect } from "react";
+import MenuOptions from "../../molecules/MenuOptions";
 export default function Header() {
     const navigate = useNavigate();
     const { page, setPage } = usePageContext();
     const { user } = useUserContext();
-
-    useEffect(() => {
-        console.log(user)
-    }, [user])
 
     return (
         <div>
@@ -21,7 +18,7 @@ export default function Header() {
                     </div>
                 </div>
                 {
-                    !user ? (
+                    user === null ? (
                         page === "login" ? (
                             <div className="flex justify-around items-center">
                                 <p className="text-gray text-lg flex items-center justify-center pr-3">Não tem uma Conta?</p>
@@ -39,7 +36,9 @@ export default function Header() {
                             </div>
                         )
                     ) : (
-                        <h1>teste</h1>
+                        <div className="flex justify-center items-center">
+                            <MenuOptions text={user.username} />
+                        </div>
                     )
                 }
             </header>
