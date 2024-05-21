@@ -1,6 +1,6 @@
 export default function Input({ name, image, placeholder, register, rules, error }) {
     return (
-        <div className="relative flex flex-col my-5 w-full">
+        <div className="relative flex flex-col mt-5 w-full">
             <div className="relative flex h-12 w-full">
                 <div className="absolute left-0 flex items-center pl-3 h-full pointer-events-none">
                     <img src={image} alt="" className="h-6 w-6" />
