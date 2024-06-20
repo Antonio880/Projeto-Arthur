@@ -7,7 +7,7 @@ import { useUserContext } from '../../Context/ContextUser'
 
 
 export default function MenuOptions({ text }) {
-    
+
     const navigate = useNavigate();
     const { user, setUser } = useUserContext();
     function classNames(...classes) {
@@ -34,7 +34,10 @@ export default function MenuOptions({ text }) {
             >
                 <Menu.Items className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
-                        <MenuItem text={"Sign Out"} onClick={() => {navigate("/"); setUser(null)}} classNames={classNames}/>
+                        <MenuItem text={"Settings"} onClick={() => { navigate("/settings") }} classNames={classNames} />
+                    </div>
+                    <div className="py-1">
+                        <MenuItem text={"Sign Out"} onClick={() => { navigate("/"); setUser(null) }} classNames={classNames} />
                     </div>
                 </Menu.Items>
             </Transition>
