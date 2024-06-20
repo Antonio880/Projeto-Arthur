@@ -10,7 +10,7 @@ export default function BioInput({ register }) {
                 <textarea 
                     type="text"
                     {...register('bio')}
-                    className='w-[400px] h-[150px] border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple' />
+                    className='w-[400px] h-[100px] border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple' />
             </div>
         </div>
     )

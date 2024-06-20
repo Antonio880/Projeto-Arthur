@@ -4,7 +4,7 @@ import PhoneInput from "../../molecules/PhoneInput";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-export default function DivUpdate({}){
+export default function DivUpdate({  }){
     const [phoneNumber, setPhoneNumber] = useState('');
     const {
         register,
@@ -17,7 +17,10 @@ export default function DivUpdate({}){
             <NomeInput register={register} />
             <div className="flex">
                 <BioInput register={register} />
-                <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+                <div className="h-full">
+                    <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+                    <button type="submit" className='ml-7 mt-6 py-1 px-3 border-2 border-purple bg-purple rounded-md transition delay-200 hover:bg-darkPurple hover:border-darkPurple text-white'>Salvar Alterações</button>
+                </div>
             </div>
         </div>
     )

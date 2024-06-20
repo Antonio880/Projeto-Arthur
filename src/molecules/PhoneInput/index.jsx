@@ -21,15 +21,17 @@ export default function PhoneInput({ setPhoneNumber, phoneNumber }) {
     };
 
     return (
-        <div className='flex justify-center w-full'>
-            <TextTitle title={"Telefone"} />
-            <div className='w-full'>
+        <div className='flex w-full ml-7 flex-col'>
+            <div className='flex justify-start pb-2'>
+                <TextTitle title={"Telefone"} />
+            </div>
+            <div className='flex justify-start' >
                 <input
                     type="text"
                     value={phoneNumber}
                     onChange={handleInputChange}
                     placeholder="(XX) XXXX-XXXX"
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 pl-2 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange-500 sm:text-sm sm:leading-6'
+                    className='block w-full py-1.5 text-gray-900  border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple'
                 />
             </div>
         </div>
