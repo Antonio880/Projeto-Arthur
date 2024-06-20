@@ -37,7 +37,7 @@ export default function Header() {
                         )
                     ) : (
                         <div className="flex justify-center items-center">
-                            <MenuOptions text={user.username} />
+                            <MenuOptions text={"Perfil"} />
                         </div>
                     )
                 }

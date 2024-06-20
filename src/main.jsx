@@ -8,6 +8,7 @@ import Header from "./templates/Header/index.jsx";
 import Footer from "./templates/Footer/index.jsx";
 import Sign from "./pages/Sign/index.jsx";
 import Login from "./pages/Login/index.jsx";
+import Settings from "./pages/Settings/index.jsx";
 import { PageProvider } from "./Context/PageContext.jsx";
 import { UserProvider } from "./Context/ContextUser.jsx";
 
@@ -48,6 +49,20 @@ const router = createBrowserRouter([
           <body>
             <Header />
             <Login />
+            <Footer />
+          </body>
+        </PageProvider>
+      </UserProvider>
+    )
+  },
+  {
+    path: "/settings",
+    element: (
+      <UserProvider>
+        <PageProvider>
+          <body>
+            <Header />
+            <Settings />
             <Footer />
           </body>
         </PageProvider>

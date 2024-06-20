@@ -9,7 +9,7 @@ export default function DivForm({ typeUser, setTypeUser }) {
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm();
     const { user, setUser } = useUserContext();
     const navigate = useNavigate();
-    const BASE_URL = "http://localhost:8080";
+    const BASE_URL = "http://localhost:8090";
     const onSubmit = async data => {
         console.log(data)
         data.role = typeUser ? "professor" : "student";
