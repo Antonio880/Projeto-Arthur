@@ -13,10 +13,12 @@ export default function DivUpdate({}){
       } = useForm();
 
     return (
-        <div className="flex w-[800px] justify-center flex-col">
-            <NomeInput />
-            <BioInput />
-            <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+        <div className="flex w-[800px] justify-center flex-col pb-10">
+            <NomeInput register={register} />
+            <div className="flex">
+                <BioInput register={register} />
+                <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
+            </div>
         </div>
     )
 }

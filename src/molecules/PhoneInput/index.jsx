@@ -1,3 +1,5 @@
+import TextTitle from '../../atoms/TextTitle/index.jsx';
+
 export default function PhoneInput({ setPhoneNumber, phoneNumber }) {
     const formatPhoneNumber = (input) => {
         // Limpe qualquer caractere que não seja número
@@ -19,7 +21,7 @@ export default function PhoneInput({ setPhoneNumber, phoneNumber }) {
     };
 
     return (
-        <div className='flex justify-center w-full py-7'>
+        <div className='flex justify-center w-full'>
             <TextTitle title={"Telefone"} />
             <div className='w-full'>
                 <input
