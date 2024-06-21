@@ -9,6 +9,7 @@ import Footer from "./templates/Footer/index.jsx";
 import Sign from "./pages/Sign/index.jsx";
 import Login from "./pages/Login/index.jsx";
 import Settings from "./pages/Settings/index.jsx";
+import { useUserContext } from "./Context/ContextUser.jsx";
 import { PageProvider } from "./Context/PageContext.jsx";
 import { UserProvider } from "./Context/ContextUser.jsx";
 
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
         <PageProvider>
           <body>
             <Header />
-            <Settings />
+             <Settings /> 
             <Footer />
           </body>
         </PageProvider>

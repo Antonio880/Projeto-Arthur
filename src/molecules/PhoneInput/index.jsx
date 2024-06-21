@@ -6,7 +6,7 @@ export default function PhoneInput({ setPhoneNumber, phoneNumber }) {
         const cleaned = ('' + input).replace(/\D/g, '');
 
         // Aplique a formatação (XX) XXXX-XXXX
-        const match = cleaned.match(/^(\d{0,2})(\d{0,4})(\d{0,4})$/);
+        const match = cleaned.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
         if (match) {
             return !match[2] ? `(${match[1]}` : `(${match[1]}) ${match[2]}` + (match[3] ? `-${match[3]}` : '');
         }
@@ -31,7 +31,7 @@ export default function PhoneInput({ setPhoneNumber, phoneNumber }) {
                     value={phoneNumber}
                     onChange={handleInputChange}
                     placeholder="(XX) XXXX-XXXX"
-                    className='block w-full py-1.5 text-gray-900  border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple'
+                    className='block w-full py-1.5 text-gray-900 border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple'
                 />
             </div>
         </div>

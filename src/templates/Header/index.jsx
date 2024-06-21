@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { usePageContext } from "../../Context/PageContext";
 import { useUserContext } from "../../Context/ContextUser";
-import { useEffect } from "react";
 import MenuOptions from "../../molecules/MenuOptions";
 export default function Header() {
     const navigate = useNavigate();
