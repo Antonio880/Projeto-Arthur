@@ -1,4 +1,4 @@
-function SeriesCard({ serie_number }) {
+function SeriesCard({ serie, curso }) {
   return (
     <div className="w-64 min-w-64 max-w-64 rounded-3xl flex flex-col items-center justify-center">
       <img
@@ -8,9 +8,9 @@ function SeriesCard({ serie_number }) {
       />
       <div className="bg-[#d9d9d9] w-full p-3 rounded-b-3xl">
         <h3 className="pl-4 font-semibold text-orange text-3xl">
-          {serie_number}º Série
+          {serie}º Série
         </h3>
-        <p className="text-purple pl-4">Informática</p>
+        <p className="text-purple pl-4">{curso}</p>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 function DisciplinaCard({ disciplina_text }) {
   return (
-    <div className="relative flex items-center justify-start bg-[#d9d9d9] w-64 h-24 rounded-3xl">
+    <div className="relative cursor-pointer flex items-center justify-start bg-[#d9d9d9] w-64 h-24 rounded-3xl">
       <button>
         <img src="vector.svg" alt="" className="absolute top-2 right-2 w-5" />
       </button>
