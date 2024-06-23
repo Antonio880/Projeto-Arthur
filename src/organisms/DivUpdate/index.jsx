@@ -1,25 +1,33 @@
 import NomeInput from "../../molecules/NomeInput"
 import BioInput from "../../molecules/BioInput"
-import PhoneInput from "../../molecules/PhoneInput";
+import PasswordInput from "../../molecules/PasswordInput"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../Context/ContextUser";
 import axios from "axios";
 
 export default function DivUpdate({  }){
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const navigate = useNavigate();
     const { user, setUser } = useUserContext();
     const {
         register,
         handleSubmit,
+        watch,
         formState: { errors }
       } = useForm();
 
     const onSubmit = (data) => {
-        data.phoneNumber = phoneNumber.replace(/\D/g, '');
-        axios.put(`http://localhost:8090/users/${user.id}`, data)
+        console.log(data);
+        axios.put(`http://localhost:8090/users/${user.id}`, {
+            email: data.email,
+            username: data.name,
+            password: data.password
+        })
         .then(res => {
-            console.log(res);
+            console.log(res.data);
+            setUser(res.data);
+            navigate('/home');
         })
         .catch(err => {
             console.log(err);
@@ -31,10 +39,11 @@ export default function DivUpdate({  }){
             <form onSubmit={handleSubmit(onSubmit)}>
                 <NomeInput register={register} errors={errors} />
                 <div className="flex">
-                    <BioInput register={register} />
-                    <div className="h-full">
-                        <PhoneInput phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber} />
-                        <button type="submit" className='ml-7 mt-6 py-1 px-3 border-2 border-purple bg-purple rounded-md transition delay-200 hover:bg-darkPurple hover:border-darkPurple text-white'>Salvar Alterações</button>
+                    <PasswordInput register={register} erros={errors} watch={watch}/>
+                    
+                    <div className="h-full  items-center">
+                    <BioInput register={register} />    
+                        <button type="submit" className='mt-16 py-1 px-3 border-2 border-purple bg-purple rounded-md transition delay-200 hover:bg-darkPurple hover:border-darkPurple text-white'>Salvar Alterações</button>
                     </div>
                 </div>
             </form>

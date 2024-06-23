@@ -4,13 +4,13 @@ export default function BioInput({ register }) {
     return (
         <div className='flex justify-center flex-col'>
             <div className='flex justify-start pb-2'>
-                <TextTitle title={"Biografia"} />
+                <TextTitle title={"Email"} />
             </div>
             <div className='flex justify-start' >
-                <textarea 
+                <input 
                     type="text"
-                    {...register('bio')}
-                    className='w-[400px] h-[100px] border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple' />
+                    {...register('email')}
+                    className='w-[400px] h-[40px] border-2 border-gray rounded-xl focus:ring-2 focus:ring-purple' />
             </div>
         </div>
     )
