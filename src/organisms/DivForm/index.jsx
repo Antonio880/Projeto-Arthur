@@ -12,7 +12,7 @@ export default function DivForm({ typeUser, setTypeUser }) {
     const BASE_URL = "http://localhost:8090";
     const onSubmit = async data => {
         console.log(data)
-        data.role = typeUser ? "professor" : "student";
+        data.role = typeUser ? "professor" : "aluno";
         await axios.post(`${BASE_URL}/users`, data)
             .then(response => {
                 setUser(response.data);

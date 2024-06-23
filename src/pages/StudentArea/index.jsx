@@ -33,6 +33,7 @@ export default function StudentArea() {
   }, [user.id]);
 
 
+
   const handleJoinRoom = async () => {
     try {
       const roomsResponse = await axios.get('http://localhost:8090/rooms');
@@ -47,6 +48,7 @@ export default function StudentArea() {
     try {
       await axios.post(`http://localhost:8090/rooms/${roomId}/users/${user.id}`);
       setViewingRooms(false);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }

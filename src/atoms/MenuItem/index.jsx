@@ -8,7 +8,8 @@ export default function MenuItem({ text, onClick, classNames }) {
                     href="#"
                     className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm'
+                        'block px-4 py-2 text-sm',
+                        `${text === "Drop Account" ? 'hover:bg-[#f87373]' : ''}` 
                     )}
                     onClick={() => onClick()}
                 >
@@ -18,3 +19,5 @@ export default function MenuItem({ text, onClick, classNames }) {
         </Menu.Item>
     )
 }
+
+//

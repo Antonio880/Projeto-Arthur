@@ -3,7 +3,8 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import MenuItem from '../../atoms/MenuItem'
 import { useNavigate } from 'react-router-dom'
-import { useUserContext } from '../../Context/ContextUser'
+import { useUserContext } from '../../Context/ContextUser';
+import axios from 'axios'
 
 
 export default function MenuOptions({ text }) {
@@ -13,6 +14,12 @@ export default function MenuOptions({ text }) {
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ')
     }
+
+    const dropAccount = async () => {
+        axios.delete(`http://localhost:8090/users/${user.id}`);
+        navigate("/"); 
+        setUser(null); 
+    };
 
     return (
         <Menu as="div" className="relative inline-block text-left">
@@ -38,6 +45,9 @@ export default function MenuOptions({ text }) {
                     </div>
                     <div className="py-1">
                         <MenuItem text={"Sign Out"} onClick={() => { navigate("/"); setUser(null) }} classNames={classNames} />
+                    </div>
+                    <div className="py-1">
+                        <MenuItem text={"Drop Account"} onClick={() => dropAccount()} classNames={classNames} />
                     </div>
                 </Menu.Items>
             </Transition>

@@ -13,13 +13,7 @@ const QuestionArea = ({ materia }) => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://quizapi.io/api/v1/questions', {
-          params: {
-            apiKey: 'ioBFeFdiBWVE0oOGl2bjQhtCb6QYthKGzC2dBgtk',
-            category: 'code', // Você pode mudar a categoria aqui
-            limit: 10 // Número de questões
-          }
-        });
+        const response = await axios.get(`http://localhost:8090/exams/2/generate-questions`);
         setQuestions(response.data);
       } catch (err) {
         setError(err.message);
