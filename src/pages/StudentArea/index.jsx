@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import TextTitle from "../../atoms/TextTitle";
 import axios from 'axios';
 import ProvasCard from "../../organisms/ProvasCard";
@@ -11,28 +11,29 @@ export default function StudentArea() {
   const [exams, setExams] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [viewingRooms, setViewingRooms] = useState(false);
-
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchRoom = async () => {
+    const fetchRoomAndExams = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`http://localhost:8090/users/${user.id}/room`);
         setRoom(response.data);
-
+        console.log(response.data);
         if (response.data) {
           const examsResponse = await axios.get(`http://localhost:8090/exams/${response.data.id}`);
           setExams(examsResponse.data);
         }
       } catch (err) {
-        console.error(err);
+        setError(err);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchRoom();
+    fetchRoomAndExams();
   }, [user.id]);
-
-
 
   const handleJoinRoom = async () => {
     try {
@@ -40,7 +41,7 @@ export default function StudentArea() {
       setRooms(roomsResponse.data);
       setViewingRooms(true);
     } catch (err) {
-      console.error(err);
+      setError(err);
     }
   };
 
@@ -50,9 +51,11 @@ export default function StudentArea() {
       setViewingRooms(false);
       window.location.reload();
     } catch (err) {
-      console.error(err);
+      setError(err);
     }
   };
+
+  if (loading) return <p>Carregando...</p>;
 
   return (
     <div className="flex w-full">
@@ -65,7 +68,10 @@ export default function StudentArea() {
             <TextTitle title="Provas atribuídas" />
             <div>
               {exams.map((exam, index) => (
-                <ProvasCard key={index} prova={exam} />
+                <Link to={`/take-exam/${exam.id}`} state={{ id:exam.id, category: exam.category }} key={index}>
+                  {console.log(exam)}
+                  <ProvasCard prova={exam} />
+                </Link>
               ))}
             </div>
           </div>

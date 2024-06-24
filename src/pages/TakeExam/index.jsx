@@ -4,28 +4,30 @@ import { useLocation } from 'react-router-dom';
 import QuestionArea from '../QuestionArea';
 
 const TakeExam = () => {
-    let location = useLocation();
-    const { state } = location;
-  const { examId } = state || {}; // Adicione um fallback aqui
-  const [exam, setExam] = useState(null);
+  let location = useLocation();
+  const { state } = location;
+  const { id, category } = state; // Adicione um fallback aqui
+  const [prova, setProva] = useState(null);
 
   useEffect(() => {
+    console.log(id, category)
     const fetchExam = async () => {
       try {
-        const response = await axios.get(`/exams/${examId}/generate-questions`);
-        setExam(response.data);
+        const response = await axios.post(`http://localhost:8090/exams/${id}/generate-questions`);
+        setProva(response.data);
+        console.log(response.data);
       } catch (err) {
         console.error(err);
       }
     };
 
     fetchExam();
-  }, [examId]);
+  }, [id]);
 
   return (
     <div>
-      {exam ? (
-        <QuestionArea questions={exam.questions} />
+      {prova ? (
+        <QuestionArea questions={prova} examId={id} category={category} />
       ) : (
         <p>Carregando prova...</p>
       )}
