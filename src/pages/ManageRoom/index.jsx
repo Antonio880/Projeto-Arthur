@@ -26,10 +26,10 @@ const ManageRoom = () => {
     const fetchRoomDetails = async () => {
       try {
         if (id) {
-          const studentsResponse = await axios.get(`http://localhost:8090/rooms/${id}/students`);
+          const studentsResponse = await axios.get(`https://d613-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms/${id}/students`);
           setStudents(studentsResponse.data);
 
-          const examsResponse = await axios.get(`http://localhost:8090/exams/${id}`);
+          const examsResponse = await axios.get(`https://d613-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/${id}`);
           setExams(examsResponse.data);
         }
       } catch (err) {
@@ -42,7 +42,7 @@ const ManageRoom = () => {
 
   const onSubmit = async (data) => {
     try {
-      const responseExam = await axios.post(`http://localhost:8090/exams/create?category=${data.category}&questionCount=${data.questionCount}&roomId=${id}&createdById=${user.id}`);
+      const responseExam = await axios.post(`https://d613-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/create?category=${data.category}&questionCount=${data.questionCount}&roomId=${id}&createdById=${user.id}`);
       
     } catch (err) {
       console.error(err);

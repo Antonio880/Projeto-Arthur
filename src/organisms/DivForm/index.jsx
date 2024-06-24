@@ -9,7 +9,7 @@ export default function DivForm({ typeUser, setTypeUser }) {
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm();
     const { user, setUser } = useUserContext();
     const navigate = useNavigate();
-    const BASE_URL = "http://localhost:8090";
+    const BASE_URL = "https://d613-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app";
     const onSubmit = async data => {
         console.log(data)
         data.role = typeUser ? "professor" : "aluno";
