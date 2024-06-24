@@ -8,35 +8,40 @@ import ProvasCard from "../../organisms/ProvasCard";
 
 function TeacherArea() {
   const [turmas, setTurmas] = useState([]);
-  const [ provas, setProvas ] = useState([]);
+  const [provas, setProvas] = useState([]);
   const { user } = useUserContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        await axios.get("https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms")
-          .then((response) => setTurmas(response.data))
-          .catch(e => console.error(e))
-
+        if (user && user.id) {
+          const response = await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms/createdBy/${user.id}`);
+          setTurmas(response.data || []);
+        } else {
+          console.error("User ID not available.");
+        }
       } catch (e) {
-        console.error(e)
+        console.error("Error fetching rooms:", e);
       }
     };
 
     const fetchProvas = async () => {
       try {
-        await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/createdBy/${user.id}`)
-          .then((response) => setProvas(response.data))
-          .catch(e => console.error(e))
-
+        if (user && user.id) {
+          const response = await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/createdBy/${user.id}`);
+          setProvas(response.data || []);
+        } else {
+          console.error("User ID not available.");
+        }
       } catch (e) {
-        console.error(e)
+        console.error("Error fetching exams:", e);
       }
-    }
+    };
+
     fetchRooms();
     fetchProvas();
-  }, [])
+  }, [user]); // Dependência adicionada para reexecutar o efeito quando o usuário muda
 
   return (
     <div className="w-8/12 flex flex-col m-auto">
@@ -50,15 +55,15 @@ function TeacherArea() {
         </button>
       </div>
       <div className="flex flex-row">
-      {
-        turmas[0] !== undefined ? 
+        {Array.isArray(turmas) && turmas.length > 0 ? (
           turmas.map((turma, index) => (
             <SeriesCard turma={turma} key={index} />
           ))
-         : <div>
-          <h1 className="text-center text-2xl text-gray-500">Nenhuma sala cadastrada</h1>
-        </div>
-      }
+        ) : (
+          <div>
+            <h1 className="text-center text-2xl text-gray-500">Nenhuma sala cadastrada</h1>
+          </div>
+        )}
       </div>
 
       <div className="w-[1120px]">
@@ -66,15 +71,15 @@ function TeacherArea() {
           <TextTitle title="Provas" />
         </div>        
         <div className="flex flex-row flex-wrap w-full">
-          {
-            provas[0] !== undefined ? 
-              provas.map((prova, index) => (
-                <ProvasCard prova={prova} key={index} />
-              ))
-            : <div>
+          {Array.isArray(provas) && provas.length > 0 ? (
+            provas.map((prova, index) => (
+              <ProvasCard prova={prova} key={index} />
+            ))
+          ) : (
+            <div>
               <h1 className="text-center text-2xl text-gray-500">Nenhuma Prova cadastrada</h1>
             </div>
-          }
+          )}
         </div>
       </div>
 
