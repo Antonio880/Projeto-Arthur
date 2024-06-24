@@ -47,7 +47,7 @@ export default function StudentArea() {
 
   const joinRoom = async (roomId) => {
     try {
-      await axios.post(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms/${roomId}/users/${user.id}`);
+      await axios.post(`http://localhost:8090/rooms/${roomId}/users/${user.id}`);
       setViewingRooms(false);
       window.location.reload();
     } catch (err) {

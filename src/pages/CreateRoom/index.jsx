@@ -12,7 +12,7 @@ const CreateRoom = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms?creatorId=${user.id}`, { serie, curso });
+      await axios.post(`http://localhost:8090/rooms?creatorId=${user.id}`, { serie, curso });
       navigate('/teacher-area')
     } catch (err) {
       console.error(err);

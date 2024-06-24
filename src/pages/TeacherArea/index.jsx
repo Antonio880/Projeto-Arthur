@@ -15,8 +15,10 @@ function TeacherArea() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
+        
         if (user && user.id) {
-          const response = await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms/createdBy/${user.id}`);
+          console.log(user)
+          const response = await axios.get(`http://localhost:8090/rooms/createdBy/${user.id}`);
           setTurmas(response.data || []);
         } else {
           console.error("User ID not available.");
@@ -29,7 +31,7 @@ function TeacherArea() {
     const fetchProvas = async () => {
       try {
         if (user && user.id) {
-          const response = await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/createdBy/${user.id}`);
+          const response = await axios.get(`http://localhost:8090/exams/createdBy/${user.id}`);
           setProvas(response.data || []);
         } else {
           console.error("User ID not available.");
@@ -42,6 +44,10 @@ function TeacherArea() {
     fetchRooms();
     fetchProvas();
   }, [user]); // Dependência adicionada para reexecutar o efeito quando o usuário muda
+
+  useEffect(() => {
+    console.log(turmas)
+  }, [turmas])
 
   return (
     <div className="w-8/12 flex flex-col m-auto">
