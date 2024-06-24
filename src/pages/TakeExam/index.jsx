@@ -13,7 +13,7 @@ const TakeExam = () => {
     console.log(id, category)
     const fetchExam = async () => {
       try {
-        const response = await axios.post(`http://localhost:8090/exams/${id}/generate-questions`);
+        const response = await axios.post(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/${id}/generate-questions`);
         setProva(response.data);
         console.log(response.data);
       } catch (err) {

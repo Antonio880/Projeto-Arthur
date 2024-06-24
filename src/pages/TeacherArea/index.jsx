@@ -15,7 +15,7 @@ function TeacherArea() {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        await axios.get("http://localhost:8090/rooms")
+        await axios.get("https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms")
           .then((response) => setTurmas(response.data))
           .catch(e => console.error(e))
 
@@ -26,7 +26,7 @@ function TeacherArea() {
 
     const fetchProvas = async () => {
       try {
-        await axios.get(`http://localhost:8090/exams/createdBy/${user.id}`)
+        await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/createdBy/${user.id}`)
           .then((response) => setProvas(response.data))
           .catch(e => console.error(e))
 

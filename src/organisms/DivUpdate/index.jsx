@@ -19,7 +19,7 @@ export default function DivUpdate({  }){
 
     const onSubmit = (data) => {
         console.log(data);
-        axios.put(`https://d613-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/users/${user.id}`, {
+        axios.put(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/users/${user.id}`, {
             email: data.email,
             username: data.name,
             password: data.password
