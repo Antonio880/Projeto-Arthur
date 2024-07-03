@@ -1,6 +1,5 @@
 import { Fragment, useEffect } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import MenuItem from '../../atoms/MenuItem'
 import { useNavigate } from 'react-router-dom'
 import { useUserContext } from '../../Context/ContextUser';
@@ -26,7 +25,7 @@ export default function MenuOptions({ text }) {
             <div>
                 <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition hover:text-white hover:bg-purple">
                     {text}
-                    <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+                    <img src='chevron_down.svg' className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                 </Menu.Button>
             </div>
 

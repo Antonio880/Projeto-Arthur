@@ -11,27 +11,27 @@ function TeacherArea() {
   const [provas, setProvas] = useState([]);
   const { user } = useUserContext();
   const navigate = useNavigate();
-
+  const BASE_URL = "http://localhost:3000"; 
   useEffect(() => {
     const fetchRooms = async () => {
       try {
         
         if (user && user.id) {
           console.log(user)
-          const response = await axios.get(`http://localhost:8090/rooms/createdBy/${user.id}`);
+          const response = await axios.get(`${BASE_URL}/rooms/createdBy/${user.id}`);
           setTurmas(response.data || []);
         } else {
           console.error("User ID not available.");
         }
       } catch (e) {
-        console.error("Error fetching rooms:", e);
+        console.error("Error fetching rooms:", e); 
       }
     };
 
     const fetchProvas = async () => {
       try {
         if (user && user.id) {
-          const response = await axios.get(`http://localhost:8090/exams/createdBy/${user.id}`);
+          const response = await axios.get(`${BASE_URL}/exams/createdBy/${user.id}`);
           setProvas(response.data || []);
         } else {
           console.error("User ID not available.");
@@ -50,8 +50,9 @@ function TeacherArea() {
   }, [turmas])
 
   return (
-    <div className="w-8/12 flex flex-col m-auto">
-      <div className="flex justify-between mr-auto m-4 w-full">
+    <div className=" flex flex-col items-center justify-center m-auto">
+      <div className="flex justify-center mr-auto m-4 w-full">
+        <div className="flex w-[1000px] justify-between">
         <TextTitle title="Salas" />
         <button
           onClick={() => navigate("/create-room")}
@@ -60,6 +61,8 @@ function TeacherArea() {
           Adicionar Sala
         </button>
       </div>
+        </div>
+      
       <div className="flex flex-row">
         {Array.isArray(turmas) && turmas.length > 0 ? (
           turmas.map((turma, index) => (
@@ -71,22 +74,20 @@ function TeacherArea() {
           </div>
         )}
       </div>
-
-      <div className="w-[1120px]">
-        <div className="py-6">
-          <TextTitle title="Provas" />
-        </div>        
-        <div className="flex flex-row flex-wrap w-full">
-          {Array.isArray(provas) && provas.length > 0 ? (
-            provas.map((prova, index) => (
-              <ProvasCard prova={prova} key={index} />
-            ))
-          ) : (
-            <div>
-              <h1 className="text-center text-2xl text-gray-500">Nenhuma Prova cadastrada</h1>
-            </div>
-          )}
-        </div>
+      
+      <div className="py-6">
+        <TextTitle title="Provas" />
+      </div>        
+      <div className="flex justify-center rounded-xl flex-row  w-[1000px] overflow-x-auto">
+        {Array.isArray(provas) && provas.length > 0 ? (
+          provas.map((prova, index) => (
+            <ProvasCard prova={prova} key={index} />
+          ))
+        ) : (
+          <div>
+            <h1 className="text-center text-2xl text-gray-500">Nenhuma Prova cadastrada</h1>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-row items-center justify-center mt-16">

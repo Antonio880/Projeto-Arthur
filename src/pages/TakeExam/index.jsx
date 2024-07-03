@@ -8,12 +8,13 @@ const TakeExam = () => {
   const { state } = location;
   const { id, category } = state; // Adicione um fallback aqui
   const [prova, setProva] = useState(null);
+  const BASE_URL = "http://localhost:3000"; 
 
   useEffect(() => {
     console.log(id, category)
     const fetchExam = async () => {
       try {
-        const response = await axios.post(`http://localhost:8090/exams/${id}/generate-questions`);
+        const response = await axios.post(`${BASE_URL}/exams/${id}/generate-questions`);
         setProva(response.data);
         console.log(response.data);
       } catch (err) {

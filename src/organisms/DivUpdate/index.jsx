@@ -16,10 +16,11 @@ export default function DivUpdate({  }){
         watch,
         formState: { errors }
       } = useForm();
+    const BASE_URL = "http://localhost:3000"; 
 
     const onSubmit = (data) => {
         console.log(data);
-        axios.put(`http://localhost:8090/users/${user.id}`, {
+        axios.put(`${BASE_URL}/users/${user.id}`, {
             email: data.email,
             username: data.name,
             password: data.password

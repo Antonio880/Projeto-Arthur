@@ -8,11 +8,11 @@ export default function FormLogin() {
     const navigate = useNavigate();
     const { register, handleSubmit, setError, formState: { errors } } = useForm();
     const { setUser } = useUserContext();
-    const BASE_URL = "http://localhost:8090";
+    const BASE_URL = "http://localhost:3000";
 
     const onSubmit = async data => {
         try {
-            const response = await axios.post(`${BASE_URL}/users/login`, data);
+            const response = await axios.post(`${BASE_URL}/login`, data);
             if (response.status === 200) {
                 setUser(response.data);
                 navigate("/");

@@ -13,16 +13,17 @@ export default function StudentArea() {
   const [viewingRooms, setViewingRooms] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const BASE_URL = "http://localhost:3000"; 
 
   useEffect(() => {
     const fetchRoomAndExams = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/users/${user.id}/room`);
+        const response = await axios.get(`${BASE_URL}/users/${user.id}/room`);
         setRoom(response.data);
         console.log(response.data);
         if (response.data) {
-          const examsResponse = await axios.get(`https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/exams/${response.data.id}`);
+          const examsResponse = await axios.get(`${BASE_URL}/exams/${response.data.id}`);
           setExams(examsResponse.data);
         }
       } catch (err) {
@@ -37,7 +38,7 @@ export default function StudentArea() {
 
   const handleJoinRoom = async () => {
     try {
-      const roomsResponse = await axios.get('https://2e29-2804-14c-de89-8477-8a2a-7a54-296a-26c0.ngrok-free.app/rooms');
+      const roomsResponse = await axios.get(`${BASE_URL}/rooms`);
       setRooms(roomsResponse.data);
       setViewingRooms(true);
     } catch (err) {
@@ -47,7 +48,7 @@ export default function StudentArea() {
 
   const joinRoom = async (roomId) => {
     try {
-      await axios.post(`http://localhost:8090/rooms/${roomId}/users/${user.id}`);
+      await axios.post(`${BASE_URL}/rooms/${roomId}/users/${user.id}`);
       setViewingRooms(false);
       window.location.reload();
     } catch (err) {

@@ -8,11 +8,12 @@ const CreateRoom = () => {
   const [ curso, setCurso ] = useState('');
   const { user } = useUserContext();
   const navigate = useNavigate();
+  const BASE_URL = "http://localhost:3000"; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:8090/rooms?creatorId=${user.id}`, { serie, curso });
+      await axios.post(`${BASE_URL}/rooms?creatorId=${user.id}`, { serie, curso });
       navigate('/teacher-area')
     } catch (err) {
       console.error(err);

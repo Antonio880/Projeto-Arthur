@@ -9,11 +9,11 @@ export default function DivForm({ typeUser, setTypeUser }) {
     const { register, handleSubmit, watch, setError, formState: { errors } } = useForm();
     const { user, setUser } = useUserContext();
     const navigate = useNavigate();
-    const BASE_URL = "http://localhost:8090";
+    const BASE_URL = "http://localhost:3000";
     const onSubmit = async data => {
         console.log(data)
         data.role = typeUser ? "professor" : "aluno";
-        await axios.post(`${BASE_URL}/users`, data)
+        await axios.post(`${BASE_URL}/register`, data)
             .then(response => {
                 setUser(response.data);
                 console.log(response);
