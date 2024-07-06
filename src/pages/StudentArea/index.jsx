@@ -4,6 +4,7 @@ import TextTitle from "../../atoms/TextTitle";
 import axios from 'axios';
 import ProvasCard from "../../organisms/ProvasCard";
 import { useUserContext } from '../../Context/ContextUser';
+import Loading from "../../atoms/Loading";
 
 export default function StudentArea() {
   const { user } = useUserContext();
@@ -16,16 +17,12 @@ export default function StudentArea() {
   const BASE_URL = "http://localhost:3000"; 
 
   useEffect(() => {
-    const fetchRoomAndExams = async () => {
+    const fetchRoom = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${BASE_URL}/users/${user.id}/room`);
+        const response = await axios.get(`${BASE_URL}/users/${user.id}/get_room`);
         setRoom(response.data);
         console.log(response.data);
-        if (response.data) {
-          const examsResponse = await axios.get(`${BASE_URL}/exams/${response.data.id}`);
-          setExams(examsResponse.data);
-        }
       } catch (err) {
         setError(err);
       } finally {
@@ -33,8 +30,27 @@ export default function StudentArea() {
       }
     };
 
-    fetchRoomAndExams();
-  }, [user.id]);
+    fetchRoom();
+  }, [user.id, BASE_URL]);
+
+  useEffect(() => {
+    if (room) {
+      const fetchExams = async () => {
+        try {
+          setLoading(true);
+          const examsResponse = await axios.get(`${BASE_URL}/exams/room_exams/${room.id}`);
+          console.log(examsResponse.data)
+          setExams(examsResponse.data);
+        } catch (err) {
+          setError(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchExams();
+    }
+  }, [room, BASE_URL]);
 
   const handleJoinRoom = async () => {
     try {
@@ -56,50 +72,56 @@ export default function StudentArea() {
     }
   };
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <Loading />;
 
   return (
     <div className="flex w-full">
-      {room ? (
-        <div>
+      <div className="basis-1/2 pt-20">
+        {room ? (
           <div>
-            <TextTitle title={`${room.serie}ª série - ${room.curso}`} />
-          </div>
-          <div>
-            <TextTitle title="Provas atribuídas" />
             <div>
-              {exams.map((exam, index) => (
-                <Link to={`/take-exam/${exam.id}`} state={{ id:exam.id, category: exam.category }} key={index}>
-                  {console.log(exam)}
-                  <ProvasCard prova={exam} />
-                </Link>
-              ))}
+              <TextTitle title={`${room.serie}ª série - ${room.curso}`} />
             </div>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <h1>Você não está em nenhuma sala.</h1>
-          {viewingRooms ? (
             <div>
-              <TextTitle title="Salas Disponíveis" />
-              <div className="flex flex-wrap">
-                {rooms.map((room) => (
-                  <div key={room.id} className="m-4 p-4 border rounded shadow">
-                    <h2>{room.serie} série - {room.curso}</h2>
-                    <button onClick={() => joinRoom(room.id)}>
-                      Entrar nesta sala
-                    </button>
-                  </div>
+              <TextTitle title="Provas atribuídas" />
+              <div className="flex justify-center overflow-y-auto pt-2">
+                {exams && exams.map((exam, index) => (
+                  <Link to={`/take-exam/${exam.id}`} state={{ id:exam.id, category: exam.category }} key={index}>
+                    <ProvasCard prova={exam} />
+                  </Link>
                 ))}
               </div>
             </div>
-          ) : (
-            <button onClick={handleJoinRoom}>Entrar em uma Sala</button>
-          )}
-        </div>
-      )}
-      <div className="flex justify-end w-full">
+          </div>
+        ) : (
+          <div className="flex flex-col justify-center items-center h-[600px]">
+            
+            {viewingRooms ? (
+              <div >
+                <TextTitle title="Salas Disponíveis" />
+                <div className="flex justify-center flex-wrap">
+                  {rooms.map((room) => (
+                    <div key={room.id} className="m-4 p-4 border rounded shadow">
+                      <h2>{room.serie} série - {room.curso}</h2>
+                      <button className="flex justify-center rounded-md hover:bg-purple transition delay-150 hover:text-white w-full" onClick={() => joinRoom(room.id)}>
+                        Entrar nesta sala
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div>
+                 <TextTitle title={"Você não está em nenhuma sala"} />
+                 <div className="flex justify-center">
+                  <button className="mx-3 py-2 mt-4 px-2 border-2 border-purple rounded-md text-purple hover:bg-purple transition delay-150 hover:text-white" onClick={handleJoinRoom}>Entrar em uma Sala</button>
+                 </div>
+              </div>
+             )}
+          </div>
+        )}
+      </div> 
+      <div className="flex basis-1/2 justify-center w-full">
         <img src="area_aluno_manage.svg" className="w-[550px]" alt="" />
       </div>
     </div>
