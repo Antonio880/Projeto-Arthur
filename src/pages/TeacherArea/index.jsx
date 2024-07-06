@@ -18,7 +18,7 @@ function TeacherArea() {
         
         if (user && user.id) {
           console.log(user)
-          const response = await axios.get(`${BASE_URL}/rooms/createdBy/${user.id}`);
+          const response = await axios.get(`${BASE_URL}/rooms/created_by/${user.id}`);
           setTurmas(response.data || []);
         } else {
           console.error("User ID not available.");
@@ -31,7 +31,7 @@ function TeacherArea() {
     const fetchProvas = async () => {
       try {
         if (user && user.id) {
-          const response = await axios.get(`${BASE_URL}/exams/createdBy/${user.id}`);
+          const response = await axios.get(`${BASE_URL}/exams/created_by/${user.id}`);
           setProvas(response.data || []);
         } else {
           console.error("User ID not available.");

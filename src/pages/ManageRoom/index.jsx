@@ -29,9 +29,10 @@ const ManageRoom = () => {
       try {
         if (id) {
           const studentsResponse = await axios.get(`${BASE_URL}/rooms/${id}/students`);
+          console.log(studentsResponse.data);
           setStudents(studentsResponse.data);
 
-          const examsResponse = await axios.get(`${BASE_URL}/exams/${id}`);
+          const examsResponse = await axios.get(`${BASE_URL}/exams/room_exams/${id}`);
           setExams(examsResponse.data);
         }
       } catch (err) {
@@ -43,9 +44,16 @@ const ManageRoom = () => {
   }, [id]);
 
   const onSubmit = async (data) => {
+    console.log(data)
     try {
-      const responseExam = await axios.post(`${BASE_URL}/exams/create?category=${data.category}&questionCount=${data.questionCount}&roomId=${id}&createdById=${user.id}`);
+      const responseExam = await axios.post(`${BASE_URL}/exams`, {
+        category: data.category,
+        question_count: data.questionCount,
+        room_id: id,
+        created_by_id: user.id
+      });
       
+      console.log(responseExam.data);
     } catch (err) {
       console.error(err);
     }
@@ -68,7 +76,7 @@ const ManageRoom = () => {
         Gerenciar Sala:
         <span className="text-orange">{" "} {serie}° {curso}</span>
       </h1>
-      <div className='flex flex-row'>
+      <div className='flex flex-row justify-center py-8'>
         <div className='flex flex-col basis-3/4'>
           <div className='flex basis-2/3 justify-around'>
             <div>
@@ -118,7 +126,7 @@ const ManageRoom = () => {
                     {errors.category && <span>Este campo é obrigatório</span>}
                   </div>
                   
-                  <div className="col-span-1 flex flex-col">    n
+                  <div className="col-span-1 flex flex-col">
                     <label htmlFor="questionCount" className='flex justify-center text-xl'>Quantidade de Questões</label>
                     <select id="questionCount" className='w-[100px] rounded-md' {...register("questionCount", { required: true })}>
                       {[...Array(10).keys()].map(i => (
@@ -137,9 +145,6 @@ const ManageRoom = () => {
               </div>
             </form>  
           </div>  
-        </div>
-        <div className='basis-1/4'>
-          <img src={"manage_room.svg"} alt="Manage Room" className="w-full h-auto mt-4" />
         </div>
       </div>
     </div>
