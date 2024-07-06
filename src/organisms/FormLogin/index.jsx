@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Input from "../../atoms/Input";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useUserContext } from "../../Context/ContextUser";
 
 export default function FormLogin() {
@@ -12,9 +13,14 @@ export default function FormLogin() {
 
     const onSubmit = async data => {
         try {
-            const response = await axios.post(`${BASE_URL}/login`, data);
+            const response = await axios.post(`${BASE_URL}/login`, {
+                user: data
+            });
             if (response.status === 200) {
-                setUser(response.data);
+                const { token, user } = response.data;
+                setUser(user);
+                console.log(user);
+                Cookies.set('token', token, { expires: 7 });
                 navigate("/");
             }
         } catch (error) {

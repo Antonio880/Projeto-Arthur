@@ -12,8 +12,8 @@ export default function ProvasCard({ prova }){
                 <h3 className="font-semibold text-purple text-3xl">
                     {prova?.category}
                 </h3>
-                <p className="text-purple pl-4">{prova?.createdAt !== undefined && moment(prova?.createdAt).format('DD/MM/YYYY')}</p>
-                <p className="text-purple pl-4">{prova?.questionCount} questões</p>
+                <p className="text-purple pl-4">{prova?.created_at !== undefined && moment(prova?.created_at).format('DD/MM/YYYY')}</p>
+                <p className="text-purple pl-4">{prova?.question_count} questões</p>
                 <div className='absolute right-4 cursor-pointer'>
                     <img src="config.svg" alt="" />
                 </div>

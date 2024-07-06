@@ -4,7 +4,7 @@ import MenuItem from '../../atoms/MenuItem'
 import { useNavigate } from 'react-router-dom'
 import { useUserContext } from '../../Context/ContextUser';
 import axios from 'axios'
-
+import Cookies from 'js-cookie'
 
 export default function MenuOptions({ text }) {
 
@@ -17,7 +17,8 @@ export default function MenuOptions({ text }) {
     const dropAccount = async () => {
         axios.delete(`http://localhost:8090/users/${user.id}`);
         navigate("/"); 
-        setUser(null); 
+        setUser(null);
+        Cookies.remove('token'); 
     };
 
     return (

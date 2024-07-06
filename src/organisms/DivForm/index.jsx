@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useUserContext } from '../../Context/ContextUser';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 
 export default function DivForm({ typeUser, setTypeUser }) {
@@ -13,9 +14,13 @@ export default function DivForm({ typeUser, setTypeUser }) {
     const onSubmit = async data => {
         console.log(data)
         data.role = typeUser ? "professor" : "aluno";
-        await axios.post(`${BASE_URL}/register`, data)
+        await axios.post(`${BASE_URL}/register`, {
+            user: data
+        })
             .then(response => {
-                setUser(response.data);
+                const { token, user } = response.data;
+                setUser(user);
+                Cookies.set('token', token, { expires: 7 });
                 console.log(response);
                 navigate('/');
             })

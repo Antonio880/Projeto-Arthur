@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import QuestionArea from '../QuestionArea';
+import Loading from '../../atoms/Loading';
 
 const TakeExam = () => {
   let location = useLocation();
@@ -14,7 +15,7 @@ const TakeExam = () => {
     console.log(id, category)
     const fetchExam = async () => {
       try {
-        const response = await axios.post(`${BASE_URL}/exams/${id}/generate-questions`);
+        const response = await axios.get(`${BASE_URL}/exams/questions/${id}`);
         setProva(response.data);
         console.log(response.data);
       } catch (err) {
@@ -30,7 +31,7 @@ const TakeExam = () => {
       {prova ? (
         <QuestionArea questions={prova} examId={id} category={category} />
       ) : (
-        <p>Carregando prova...</p>
+        <Loading />
       )}
     </div>
   );

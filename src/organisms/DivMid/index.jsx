@@ -13,11 +13,11 @@ export default function DivMid() {
             <div>
                 <img src="poligono.svg" alt="" />
             </div>
-            <div className="cursor-pointer pl-5 pr-3" onClick={() => {user.role === "professor" && navigate("/teacher-area")}}>
-                <img src="area_do_professor.svg" alt="" />
+            <div className=" pl-5 pr-3" onClick={() => {user.role === "professor" && navigate("/teacher-area")}}>
+                <img src="area_do_professor.svg" className="cursor-pointer" alt="" />
             </div>
-            <div className="cursor-pointer pr-5" onClick={() => {user.role === "aluno" && navigate("/student-area")}}>
-                <img src="area_do_aluno.svg" alt="" />
+            <div className=" pr-5" onClick={() => {user.role === "aluno" && navigate("/student-area")}}>
+                <img src="area_do_aluno.svg" className="cursor-pointer" alt="" />
             </div>
             <div>
                 <img src="papoco.svg" alt="" />
